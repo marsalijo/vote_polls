@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+//components
+import Choices from './Choices'
+
 export default function QuestionDetail({ match }) {
 
     const [detail, setDetail] = useState({});
-    console.log('question:', detail)
 
     useEffect(() => {
         const fetchQuestion = async () => {
@@ -23,11 +25,12 @@ export default function QuestionDetail({ match }) {
                 <>
                     <h3>Question: {detail.question}</h3>
                     <small>{detail.published_at}</small>
-                    <ul>
-                        {detail.choices && 
-                            detail.choices.map((item, index) => <li key={index}>{item.choice}</li>)
-                        }
-                    </ul>
+                    {detail.choices && 
+                        <Choices 
+                            choiceData={detail.choices}
+                        />
+                    }
+                    
                 </>}
         </div>
             

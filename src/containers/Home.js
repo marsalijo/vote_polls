@@ -6,7 +6,6 @@ import Question from '../components/Question'
 
 export default function Home() {
     const [data, setData] = useState({});
-    console.log('data:', data)
 
     useEffect(() => {
         const fetchData = async () => {
