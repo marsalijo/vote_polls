@@ -6,6 +6,7 @@ import Question from '../components/Question'
 
 export default function Home() {
     const [data, setData] = useState({});
+    console.log('data:', data)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +20,7 @@ export default function Home() {
 
     return (
         <>
-            <h1>Questions</h1>
+            <h2>Questions</h2>
             <div className="questions-wrapper">
                 {data.length && data.map((item, index) => (
                     <Question
