@@ -30,3 +30,24 @@ small {
   display: inline-block;
   width: 20%;
 }
+
+.progress-root{
+  height: 5px;
+  background-color: #F5F7FA;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  margin-top: 10px;
+  width: 20%;
+}
+.progress-bar {
+  border-radius: 50px;
+  background-color: #e80808;
+  transition: transform .4s linear;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  transform-origin: left;
+}
