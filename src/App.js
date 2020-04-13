@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { Route } from 'react-router-dom'
+
+//styles
 import './App.css';
 
-function App() {
-  const [data, setData] = useState({});
-  console.log('data:', data.length)
+//components
+import Home from './containers/Home';
+import QuestionDetail from './containers/QuestionDetail';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        'https://polls.apiblueprint.org/questions',
-      );
-      setData(result.data);
-    };
-    fetchData();
-  }, []);
+
+
+function App() {
 
   return (
     <div className="App">
-      {data.length && data.map((item, index) => (
-        <div key={index}>{item.question}</div>
-      ))}
+      <Route path="/" exact component={Home} />
+      <Route path="/questions/:id" component={QuestionDetail} />
     </div>
   );
 }
