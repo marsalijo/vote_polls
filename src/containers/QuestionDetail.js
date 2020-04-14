@@ -9,19 +9,14 @@ import calcPercent from '../utils/calcPercent';
 
 
 
-export default function QuestionDetail({ match }) {
+const QuestionDetail = ({ match }) => {
 
     const [detail, setDetail] = useState({});
 
     const clickHandler = (selectedChoice) => {
         //finding the index of selected choice in choices array
-        let selectedChoiceIndex;
-        for(let i = 0; i < detail.choices.length; i++) {
-            if (detail.choices[i].choice === selectedChoice.choice) {
-                selectedChoiceIndex = i;
-                break;
-            }
-        }
+        let selectedChoiceIndex = detail.choices.findIndex((item)=>item.choice === selectedChoice.choice)
+
         //update the amount of votes for selected choice
         let newChoices = [...detail.choices];
         newChoices[selectedChoiceIndex].votes += 1;
@@ -56,17 +51,20 @@ export default function QuestionDetail({ match }) {
     return (
         <div>
             <h2>Questions Detail</h2>
-            {detail &&
+            {Object.keys(detail).length !== 0 ?
                 <>
                     <h3>Question: {detail.question}</h3>
-                    {detail.choices && 
+                    {detail.choices &&
                         <Choices 
                             choiceData={detail.choices}
                             voteHandler={clickHandler}
                         />
                     }
                     
-                </>}
+                </>
+                :
+                <span>Loading...</span>
+            }
         </div>
             
             
@@ -74,3 +72,5 @@ export default function QuestionDetail({ match }) {
        
     )
 }
+
+export default QuestionDetail;

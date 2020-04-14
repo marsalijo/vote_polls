@@ -1,4 +1,4 @@
-export default function calcPercent(data) {
+const calcPercent = (data) => {
     let newData = data;
     
     let totalVotes = data.reduce((acc, cur) => {
@@ -15,3 +15,5 @@ export default function calcPercent(data) {
     return newData;
 
 }
+
+export default calcPercent;

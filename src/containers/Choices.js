@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 
 
 
-export default function Choices({ choiceData, voteHandler }) {
+const Choices = ({ choiceData, voteHandler }) => {
+
+    const [isLoading, setIsLoading] = useState(false);
 
     //Vote on a choice by clicking on it and calling the vote API of it
     const clickHandler = async (url, selectedChoice) => {
+        setIsLoading(true);
         await axios.post(
             `https://polls.apiblueprint.org${url}`,
         )
@@ -14,6 +17,7 @@ export default function Choices({ choiceData, voteHandler }) {
             //By calling voteHandler we call the setDetail 
             //which is passed down from parent component  
             voteHandler(selectedChoice);
+            setIsLoading(false);
         });
       }
 
@@ -29,8 +33,20 @@ export default function Choices({ choiceData, voteHandler }) {
                     return (
                         <li className="choice-wrapper" key={index} onClick={() => clickHandler(url, item)} >
                             <span>{choice}</span>
-                            <span>{votes}</span>
-                            <span>{percent}%</span>
+                            
+                            
+                                {isLoading ? 
+                                    <>
+                                        <span>Loading...</span>
+                                        <span>Loading...</span>
+                                    </>
+                                :
+                                    <>
+                                        <span>{percent}%</span>
+                                        <span>{votes}</span>
+                                    </>
+                                }
+                                
                             <div className="progress-root">
                                 <div className="progress-bar" style={styles}>
                                 </div>
@@ -43,3 +59,5 @@ export default function Choices({ choiceData, voteHandler }) {
         </ul>
     )
 }
+
+export default Choices;

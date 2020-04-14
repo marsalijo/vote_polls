@@ -6,7 +6,7 @@ import Question from '../components/Question'
 
 
 
-export default function Home() {
+const Home = () => {
 
     const [data, setData] = useState({});
 
@@ -36,3 +36,5 @@ export default function Home() {
         </>
     )
 }
+
+export default Home;
