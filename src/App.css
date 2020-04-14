@@ -1,20 +1,52 @@
+body {
+  color: #333;
+}
+
 .App {
   text-align: left;
-  padding: 20px;
+  padding: 40px 0;
+  width: 80%;
+  margin: auto;
 }
 
 .questions-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .question {
-  padding: 10px;
+  padding: 20px 25px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #888;
+  width: 30%;
+  margin: 10px;
+  font-size: 14px;
+}
+
+.question:hover {
+  background-color: #efefef;
+  border-color: #ddd;
+  transition: all .3s;
+}
+
+h2 {
+  color: #999;
+  font-weight: 400;
+  margin: 0 0 50px 20px;
 }
 
 h3 {
-  margin: 10px 0;
+  margin: 0 0 20px 0;
+  color: #444;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #333;
 }
 
 small {
@@ -24,16 +56,24 @@ small {
 .choice-wrapper {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 7px 30px;
+}
+
+ul {
+  padding: 0;
 }
 
 .choice-wrapper span {
   display: inline-block;
   width: 20%;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .progress-root{
   height: 5px;
-  background-color: #F5F7FA;
+  background-color: #e2e2e2;
   position: relative;
   border-radius: 50px;
   overflow: hidden;

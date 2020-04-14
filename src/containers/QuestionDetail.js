@@ -55,7 +55,6 @@ export default function QuestionDetail({ match }) {
             {detail &&
                 <>
                     <h3>Question: {detail.question}</h3>
-                    <small>{detail.published_at}</small>
                     {detail.choices && 
                         <Choices 
                             choiceData={detail.choices}
