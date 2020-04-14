@@ -6,8 +6,8 @@ export default function Question({ itemData }) {
     return (
         <Link to={url} className="question">
             <h3>{question}</h3>
-            <small>{published_at}</small>
-            <span>{choices.length}</span>
+            <small>Published at: {published_at.replace(/(\d{4})-(\d{2})-(\d{2}).*/, '$3-$2-$1')}</small>
+            <span>Number of choices: {choices.length}</span>
         </Link>
     )
 }

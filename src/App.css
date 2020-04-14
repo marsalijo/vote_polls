@@ -20,27 +20,31 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid #888;
-  width: 30%;
-  margin: 10px;
+  width: 270px;
+  margin: 10px 20px 10px 0;
   font-size: 14px;
+  transition: all .3s;
 }
 
 .question:hover {
   background-color: #efefef;
   border-color: #ddd;
-  transition: all .3s;
+}
+
+.question span {
+  margin-top: 8px;
 }
 
 h2 {
   color: #999;
   font-weight: 400;
-  margin: 0 0 50px 20px;
+  margin: 0 0 50px 0;
 }
 
 h3 {
-  margin: 0 0 20px 0;
-  color: #444;
-  font-weight: 500;
+  margin: 0 0 5px 0;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 a {
@@ -53,15 +57,23 @@ small {
   margin-bottom: 10px;
 }
 
+ul {
+  padding: 0;
+}
+
 .choice-wrapper {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
-  padding: 7px 30px;
+  padding: 7px 30px 7px 0;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color .3s;
+  cursor: pointer;
 }
 
-ul {
-  padding: 0;
+.choice-wrapper:hover {
+  background-color: #eee;
 }
 
 .choice-wrapper span {
@@ -69,6 +81,10 @@ ul {
   width: 20%;
   padding: 5px;
   cursor: pointer;
+}
+
+.choice-wrapper span:first-child {
+  font-weight: 600;
 }
 
 .progress-root{
@@ -90,4 +106,14 @@ ul {
   bottom: 0;
   position: absolute;
   transform-origin: left;
+}
+
+@media only screen and (max-width: 568px) {
+  .question {
+    width: 100%;
+  }
+  .choice-wrapper {
+    padding: 7px 0px;
+    font-size: 11px;
+  }
 }
