@@ -31,17 +31,22 @@ const QuestionDetail = ({ match }) => {
     //Call clicked question API and set it's data to state
     useEffect(() => {
         const fetchQuestion = async () => {
-            const result = await axios(
-                `https://polls.apiblueprint.org/questions/${match.params.id}`,
-            );
-            //Calculate choices percentage
-            let newChoices = result.data.choices
-            newChoices = calcPercent(newChoices)
-            //Set data to state
-            setDetail({
-                ...result.data,
-                choices: newChoices
-            });
+            try {
+                const result = await axios(
+                    `${process.env.REACT_APP_API_URL}/questions/${match.params.id}`,
+                );
+                //Calculate choices percentage
+                let newChoices = result.data.choices
+                newChoices = calcPercent(newChoices)
+                //Set data to state
+                setDetail({
+                    ...result.data,
+                    choices: newChoices
+                });
+            } catch (error) {
+                console.error('error:', error)
+            }
+            
         };
         fetchQuestion();
     }, [match.params.id]);

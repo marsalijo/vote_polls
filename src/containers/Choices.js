@@ -10,15 +10,18 @@ const Choices = ({ choiceData, voteHandler }) => {
     //Vote on a choice by clicking on it and calling the vote API of it
     const clickHandler = async (url, selectedChoice) => {
         setIsLoading(true);
-        await axios.post(
-            `https://polls.apiblueprint.org${url}`,
-        )
-        .then(() => {
+        try {
+            await axios.post(
+                `${process.env.REACT_APP_API_URL}${url}`,
+            )
             //By calling voteHandler we call the setDetail 
             //which is passed down from parent component  
             voteHandler(selectedChoice);
             setIsLoading(false);
-        });
+        } catch(error) {
+            console.error('error:', error)
+        }
+
       }
 
 

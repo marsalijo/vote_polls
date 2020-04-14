@@ -13,10 +13,16 @@ const Home = () => {
     //Getting all questions and set them to state
     useEffect(() => {
         const fetchData = async () => {
-            const result = await axios(
-                'https://polls.apiblueprint.org/questions',
-            );
-            setData(result.data);
+            try {
+                const result = await axios(
+                    `${process.env.REACT_APP_API_URL}/questions`,
+                );
+                console.log('home', result);
+                setData(result.data);
+
+            } catch(error) {
+                console.error('error:', error)
+            }
         };
         fetchData();
     }, []);
