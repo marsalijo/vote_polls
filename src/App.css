@@ -85,6 +85,7 @@ ul {
 
 .choice-wrapper span:first-child {
   font-weight: 600;
+  width: 30%;
 }
 
 .progress-root{
@@ -113,7 +114,7 @@ ul {
     width: 100%;
   }
   .choice-wrapper {
-    padding: 7px 0px;
+    padding: 7px 5px;
     font-size: 11px;
   }
 }

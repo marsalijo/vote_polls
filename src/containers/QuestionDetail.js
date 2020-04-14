@@ -8,6 +8,7 @@ import Choices from './Choices'
 import calcPercent from '../utils/calcPercent';
 
 
+
 export default function QuestionDetail({ match }) {
 
     const [detail, setDetail] = useState({});
@@ -25,7 +26,6 @@ export default function QuestionDetail({ match }) {
         let newChoices = [...detail.choices];
         newChoices[selectedChoiceIndex].votes += 1;
         newChoices = calcPercent(newChoices)
-        console.log('newChoices:', newChoices)
         //set new amount to state
         setDetail({
             ...detail,
@@ -33,14 +33,16 @@ export default function QuestionDetail({ match }) {
         })
     }
 
+    //Call clicked question API and set it's data to state
     useEffect(() => {
         const fetchQuestion = async () => {
             const result = await axios(
                 `https://polls.apiblueprint.org/questions/${match.params.id}`,
             );
+            //Calculate choices percentage
             let newChoices = result.data.choices
             newChoices = calcPercent(newChoices)
-
+            //Set data to state
             setDetail({
                 ...result.data,
                 choices: newChoices
@@ -48,6 +50,8 @@ export default function QuestionDetail({ match }) {
         };
         fetchQuestion();
     }, [match.params.id]);
+
+
 
     return (
         <div>

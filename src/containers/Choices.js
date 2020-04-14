@@ -1,14 +1,20 @@
 import React from 'react'
 import axios from 'axios';
 
+
+
 export default function Choices({ choiceData, voteHandler }) {
 
+    //Vote on a choice by clicking on it and calling the vote API of it
     const clickHandler = async (url, selectedChoice) => {
         await axios.post(
             `https://polls.apiblueprint.org${url}`,
-        );
-        voteHandler(selectedChoice)
-
+        )
+        .then(() => {
+            //By calling voteHandler we call the setDetail 
+            //which is passed down from parent component  
+            voteHandler(selectedChoice);
+        });
       }
 
 
