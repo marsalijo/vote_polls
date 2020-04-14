@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import safeAjaxWrapper from '../utils/ajaxWrapper';
 
 //components
 import Question from '../components/Question'
@@ -13,16 +13,8 @@ const Home = () => {
     //Getting all questions and set them to state
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const result = await axios(
-                    `${process.env.REACT_APP_API_URL}/questions`,
-                );
-                console.log('home', result);
-                setData(result.data);
-
-            } catch(error) {
-                console.error('error:', error)
-            }
+            const result = await safeAjaxWrapper(`${process.env.REACT_APP_API_URL}/questions`)
+            setData(result.data);
         };
         fetchData();
     }, []);

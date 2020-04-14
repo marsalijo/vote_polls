@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import safeAjaxWrapper from '../utils/ajaxWrapper';
 
 //components
 import Choices from './Choices'
@@ -31,22 +31,16 @@ const QuestionDetail = ({ match }) => {
     //Call clicked question API and set it's data to state
     useEffect(() => {
         const fetchQuestion = async () => {
-            try {
-                const result = await axios(
-                    `${process.env.REACT_APP_API_URL}/questions/${match.params.id}`,
-                );
-                //Calculate choices percentage
-                let newChoices = result.data.choices
-                newChoices = calcPercent(newChoices)
-                //Set data to state
-                setDetail({
-                    ...result.data,
-                    choices: newChoices
-                });
-            } catch (error) {
-                console.error('error:', error)
-            }
-            
+            const result = await safeAjaxWrapper(`${process.env.REACT_APP_API_URL}/questions/${match.params.id}`)
+
+            //Calculate choices percentage
+            let newChoices = result.data.choices
+            newChoices = calcPercent(newChoices)
+            //Set data to state
+            setDetail({
+                ...result.data,
+                choices: newChoices
+            });  
         };
         fetchQuestion();
     }, [match.params.id]);
